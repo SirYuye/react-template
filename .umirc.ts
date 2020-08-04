@@ -3,7 +3,7 @@ import routes from './src/router/index';
 import proxy from './config/proxy';
 
 export default defineConfig({
-  history: { type: 'hash' },
+  history: { type: 'browser' },
   nodeModulesTransform: {
     type: 'none',
   },
@@ -17,7 +17,7 @@ export default defineConfig({
   request: {
     dataField: 'data',
   },
-  plugins:['@alitajs/keep-alive'],
-  keepalive:['/', '/user']
+  plugins: ['@alitajs/keep-alive'],
+  keepalive: ['/'],
   // proxy
 });

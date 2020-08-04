@@ -1,6 +1,15 @@
-import React, {FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styles from './index.less';
-import { Link, history, useRequest,request, connect, ConnectProps, Loading, RequestConfig } from 'umi';
+import {
+  Link,
+  history,
+  useRequest,
+  request,
+  connect,
+  ConnectProps,
+  Loading,
+  RequestConfig,
+} from 'umi';
 import { extend } from 'umi-request';
 import { IndexModelState } from '@/models/index';
 import * as UMI from 'umi';
@@ -19,14 +28,14 @@ function userEvent() {
     params: {
       a: 'b',
     },
-    state: { fromDashboard: true }
-  })
+    state: { fromDashboard: true },
+  });
 }
 
-function updateName(dispatch:any) {
+function updateName(dispatch: any) {
   dispatch!({
     type: 'index/save',
-    payload: Math.random() * 100
+    payload: Math.random() * 100,
   });
 }
 
@@ -38,23 +47,27 @@ async function getData() {
 
 const HomePage: FC<PageProps> = ({ index, dispatch, loading, user }) => {
   const { name } = index;
-  // console.log(UMI)
+  console.log('UMI');
   getData();
   return (
     <div>
-      <h2 className={styles.title}>Hello <span className='red'>{name}</span></h2>
+      <h2 className={styles.title}>
+        Hello <span className="red">{name}</span>
+      </h2>
       <div>
-       <Link to="/user?a=2&b=3">get传参</Link>
-       <img height="1000" src={require('@/image/1.png')}  />
-       <Button type="primary" onClick={() => updateName(dispatch)}>dva</Button>
-       <Button onClick={userEvent}>post传参</Button>
+        <Link to="/user?a=2&b=3">get传参</Link>
+        <img height="1000" src={require('@/image/1.png')} />
+        <Button type="primary" onClick={() => updateName(dispatch)}>
+          dva
+        </Button>
+        <Button onClick={userEvent}>post传参</Button>
       </div>
     </div>
   );
-}
+};
 
-export default connect(({ index, user, loading }: PageProps)=>({
+export default connect(({ index, user, loading }: PageProps) => ({
   index,
-  loading:  loading.models.index,
-  user
+  loading: loading.models.index,
+  user,
 }))(HomePage);

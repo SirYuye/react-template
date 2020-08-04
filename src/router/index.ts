@@ -4,24 +4,22 @@
 
 export default [
   {
-    path: '/', component: '@/layouts/index', KeepAlive: true,
+    path: '/',
+    component: '@/layouts/index',
     routes: [
       { path: '/', component: '@/pages/Index', title: '首页' },
       { path: '/login', component: '@/pages/login' },
       { path: '/fList1', component: '@/pages/test/fList1' },
       { path: '/fList2', component: '@/pages/fList2' },
       {
-        path: '/user', component: '@/pages/user', KeepAlive: true,
-        wrappers: [
-          '@/wrappers/auth.tsx',
-        ],
+        path: '/user',
+        component: '@/pages/user',
+        KeepAlive: true,
+        wrappers: ['@/wrappers/auth.tsx'],
       },
       { component: '@/pages/404' },
-        // 重定向
+      // 重定向
       { path: '/*', redirect: '/' },
-    ]
+    ],
   },
-
-
-
-]
+];

@@ -14,13 +14,13 @@ export const request: RequestConfig = {
   },
   errorConfig: {
     // 后端接口不满足该规范的时候需要通过该配置把后端接口数据转换为正确格式, 只用于错误处理
-    adaptor: (resData) => {
+    adaptor: resData => {
       return {
         ...resData,
         success: resData.success || true,
         message: resData.message || '',
       };
-    }
+    },
   },
   // 中间件
   middlewares: [
@@ -29,11 +29,11 @@ export const request: RequestConfig = {
       // console.log('A before');
       // if (ctx.req.url.indexOf('api') !== -1) {
       //   ctx.res = {error: '错误的实例'}
-        // return setTimeout(() => history.push('/login'), 3000)
+      // return setTimeout(() => history.push('/login'), 3000)
       // }
       await next();
       // console.log('A after');
-    }
+    },
   ],
   // request 拦截器
   requestInterceptors: [
@@ -43,7 +43,7 @@ export const request: RequestConfig = {
         url: `${url}?interceptors=yes`,
         options: { ...options, interceptors: true },
       };
-    }
+    },
   ],
   // response 拦截器
   responseInterceptors: [
@@ -56,23 +56,23 @@ export const request: RequestConfig = {
         '正常' = 200,
         '网关错误。' = 502,
         '服务不可用，服务器暂时过载或维护。' = 503,
-        '网关超时。' = 504
-      };
+        '网关超时。' = 504,
+      }
       // console.log(codeMaps[response.status])
       return response;
-    }
+    },
   ],
 };
 
 // router config
 // dropByCacheKey('/list');
 export function onRouteChange(props: any) {
-  const {action, location} = props;
+  const { action, location } = props;
   if (action === 'POP') {
-    const name = arr.pop()
+    // const name = arr.pop()
     // dropByCacheKey(name as string);
   }
   if (action === 'PUSH') {
-    arr.push(location.pathname)
+    // arr.push(location.pathname)
   }
 }
